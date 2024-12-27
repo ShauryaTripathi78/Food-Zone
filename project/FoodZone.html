@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Zone - Shaurya Tripathi</title>
+    <link rel="shortcut icon" href="profile.webp" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+    * {
+        font-family: 'poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        transition: all 0.2s linear;
+        text-transform: capitalize;
+    }
+    html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+    :root {
+        --orange: #f79f1f;
+        --text-color-1:#444;
+        --text-color-2:#666;
+        --bg-color-1:#fff;
+        --bg-color-2:#eee;
+        --box-shadow:0 0.5rem 1.5rem rgba(0,0,0,0.1);
+    }
+    body {
+        background: var(--bg-color-2);
+    }
+    .heading {
+        text-align: center;
+        padding-bottom: 2rem;
+        color: var(--text-color-1);
+        font-size: 4rem;
+    }
+    .heading span {
+        position: relative;
+        z-index: 0;
+    }
+    .heading span::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        z-index: -1;
+        background: var(--orange);
+        height: 100%;
+        width: 100%;
+        clip-path: polygon(0 90%, 100% 83%, 100% 100%, 0% 100%);
+    }
+
+    /*==============navigation bar=============*/
+    .header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-color-1);
+        box-shadow: var(--box-shadow);
+        padding: 1.5rem 7%;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header .logo {
+        font-weight: bolder;
+        font-size: 2.5rem;
+        color: var(--text-color-1);
+    }
+    .header .logo i{
+        color: var(--orange);
+    }
+    .header .search-form{
+        background: var(--bg-color-2);
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        height: 4.5rem;
+        width: 50rem;
+    }
+    .header .search-form input{
+        height: 100%;
+        width: 100%;
+        background: none;
+        text-transform: none;
+        font-size: 1.5rem;
+        color: var(--text-color-1);
+        padding: 1rem;
+    }
+    .header .search-form label{
+        font-size: 2rem;
+        margin-right: 2rem;
+        color: var(--text-color-1);
+        cursor: pointer;
+    }
+    .header .search-form label:hover{
+        color: var(--orange);
+    }
+    .header .icons div{
+        height: 4.5rem;
+        width: 4.5rem;
+        line-height: 4.5rem;
+        border-radius: 0.5rem;
+        font-size: 2rem;
+        margin-left: 0.5rem;
+        background: var(--bg-color-1);
+        color: var(--text-color-1);
+        cursor: pointer;
+        text-align: center;
+    }
+    #search-btn{
+        display: none;
+    }
+
+    .header .navbar {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 115%;
+    right: 7%;
+    background: var(--bg-color-1);
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    width: 25rem;
+    transform-origin: top right;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+    .header .navbar.active{
+        transform: scale(1);
+    }
+
+    .header .navbar a{
+        display: block;
+        margin: 1rem;
+        padding: 1rem;
+        font-size: 1.5rem;
+        color: var(--text-color-1);
+        border-radius: 0.5rem;
+    }
+    header .navbar a:hover{
+        color: var(--orange);
+        background: var(--bg-color-2);
+        padding-left: 2rem;
+    }
+
+
+
+    section{
+       padding: 2rem 7%;
+    }
+    .home {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-top: 7rem;
+        background: #fff;
+    }
+    .home .image {
+        flex: 1 1 45rem;
+    }
+    .home .image img {
+        width: 70%;
+    }
+    .home .content {
+        flex: 1 1 45rem;
+    }
+    .home .content h3 {
+        color: var(--text-color-1);
+        font-size: 4rem;
+    }
+    .home .content p {
+        color: var(--text-color-2);
+        font-size: 1.7rem;
+        line-height: 1.7;
+        padding: 1rem 0;
+    }
+    .btn {
+        margin-top: 1rem;
+        display: inline-block;
+        padding: 0.8rem 3rem;
+        font-size: 1.7rem;
+        color: #fff;
+        background: #ab6806;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn:hover {
+        letter-spacing: 0.1rem;
+        background: #f79f1f; /* Change to your desired hover color */
+        transform: scale(1.05);
+    }
+
+    .form-container form {
+        background: var(--bg-color-1);
+        box-shadow: var(--box-shadow);
+        border-radius: 0.5rem;
+        padding: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .form-container form .inputBox {
+        flex: 1 1 23rem;
+    }
+
+    .form-container form .inputBox span{
+        font-size: 1.7rem;
+        color: var(--text-color-2);
+    }
+
+    .form-container form .inputBox input {
+        font-size: 1.5rem;
+        color: var(--text-color-1);
+        background-color: var(--bg-color-2);
+        border-radius: 0.5rem;
+        margin: 0.5rem 0;
+        text-transform: none;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .form-container form .btn {
+        flex: 1 1 23rem;
+        margin-top: 25px;
+    }
+
+    .packages .box-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        gap: 1.5rem;
+    }
+    .packages .box-container .box{
+        background:var(--bg-color-1);
+        border-radius: 0.5rem;
+        box-shadow: var(--box-shadow);
+    }
+
+    .packages .box-container .box .image{
+        height: 25rem;
+        width: 100%;
+        padding: 1.5rem;
+        position: relative;
+    }
+
+    .packages .box .image img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+
+    .packages .box .image h3{
+        position: absolute;
+        top: 2.5rem;
+        left: 2.5rem;
+        font-size: 2rem;
+        color: #fff;
+        background: rgba(0,0,0,0.5);
+        border-radius: 0.5rem;
+        font-weight: lighter;
+        padding: 0.5rem 1.5rem;
+    }
+
+    .packages .box .image h3 i{
+        color: var(--orange);
+    }
+
+    .packages .box-container .box .price{
+        font-weight:600;
+        color: var(--text-color-1);
+        font-size: 2.5rem;
+       
+    }
+
+    .packages .box-container .content{
+        padding: 1.5rem;
+        padding-top: 0;
+    }
+    .packages .box-container .box .price span{
+        font-weight: lighter;
+        color: var(--text-color-2);
+        font-size: 1.5rem;
+        text-decoration: line-through;
+    }
+    .packages .box-container .box .content p{
+        font-size: 1.5rem;
+        padding: 0.5rem 0;
+        color: var(--text-color-2);
+        line-height: 1.7;
+    }
+
+    .pricing .box-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        gap: 1.5rem;
+        
+    }
+
+    .pricing .box-container .box {
+        background: var(--bg-color-1);
+        border-radius: 0.5rem;
+        box-shadow: var(--box-shadow);
+        padding: 2rem;
+        align-items: center;
+        text-align: center;
+        
+    }
+
+    .pricing .box-container .box h3{
+        padding: 2rem;
+        background: var(--bg-color-2);
+        border-radius: 0.5rem;
+        font-size: 2rem;
+        color: var(--text-color-1);
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .pricing .box-container .box .price {
+        padding-top: 2rem;
+    }
+
+    .pricing .box-container .box .price span {
+        font-size: 2rem;
+        color: var(--text-color-2);
+    }
+
+    .pricing .box-container .box .price .amount{
+        font-size: 5rem;
+        color: var(--text-color-1);
+        font-weight: bolder;
+    }
+
+    .pricing .box ul {
+        padding: 0.5rem ;
+    }
+
+    .pricing .box ul li {
+        padding: 1rem, 0;
+        font-size: 1.7rem;
+        color: var(--text-color-2);
+    }
+
+    .review .box-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        gap: 1.5rem;
+        overflow-x: auto;
+        align-items: center;
+        position: relative;
+    }
+
+    .review .box-container .box{
+        background: var(--bg-color-1);
+        border-radius: 0.5rem;
+        box-shadow: var(--box-shadow);
+        padding: 2rem;
+        text-align: center;
+    }
+    .review .box-container .box .imgage{
+        height: 25rem;
+        width: 100%;
+        padding: 1.5rem;
+        position: relative;
+    }
+    .review .box-container .box img{
+        height: 15%;
+        width: 15%;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+
+    .review .box-container .box .content{
+        font-size: 1.5rem;
+        padding: 0.5rem 0;
+        color: var(--text-color-2);
+        line-height: 1.7;
+    }
+
+    #star{
+        color: var(--orange);
+    }
+
+    .contact form {
+        max-width: 70rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .contact form .inputBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .contact form .inputBox input,
+    .contact form textarea {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.6rem;
+        color: var(--text-color-1);
+        margin: 0.7rem 0;
+        background: var(--bg-color-1);
+        box-shadow: var(--box-shadow);
+        text-transform: none;
+        border-radius: 0.5rem;
+    }
+
+    .contact form textarea{
+        height: 20rem;
+        resize: none;
+    }
+    .contact form .inputBox input{
+        width: 49%;
+    }
+
+    /* ==================blogs=============*/
+    .blogs .box-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        gap: 1.5rem;
+    }
+    .blogs .box-container .box{
+        background: var(--bg-color-1);
+        border-radius: 0.5rem;
+        box-shadow: var(--box-shadow);
+        padding: 2rem;
+    }
+    .blogs .box-container .box .image{
+        height: 20rem;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        background: var(--bg-color-2);
+    }
+    .blogs .box-container .box .image img{
+        width: 100%;
+        height: 100%;
+    }
+    .blogs .box-container .box:hover .image img{
+        transform: scale(1.2);
+    }
+    .blogs .box-container .box .content {
+        padding-top: 1rem;
+    }
+    .blogs .box-container .box .content h3{
+        font-size: 2rem;
+        color: var(--text-color-1);
+        line-height: 1.5;
+    }
+    .blogs .box-container .box .content .icons{
+        display: flex;
+        justify-content: space-between;
+        border-top: 0.1rem solid var(--text-color-2);
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+    .blogs .box-container .box .content .icons a{
+        font-size: 1.5rem;
+        color: var(--text-color-2);
+    }
+    .blogs .box-container .box .content .icons a i{
+        padding-right: 0.5rem;
+        color: var(--orange);
+    }
+
+
+    /*==============footer====================*/
+    .footer {
+        background: var(--bg-color-1);
+    }
+    .footer .box-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,  minmax(22rem, 1fr));
+        gap: 1.5rem;
+    }
+    .footer .box-container .box h3{
+        font-size: 2.5rem;
+        color: var(--text-color-1);
+        padding: 1rem 0;
+    }
+    .footer .box-container .box a{
+        display: block;
+        font-size: 1.5rem;
+        color: var(--text-color-2);
+        padding: 1rem 0;
+    }
+    .footer .box-container .box a i{
+        padding-right: 0.5rem;
+        color: var(--orange);
+    }
+    /*=hover*/
+    .footer .box-container .box a:hover i{
+        padding-right: 2rem;
+    }
+    .credit{
+        font-size: 2rem;
+        text-align: center;
+        border-top: 0.1rem solid var(--text-color-1);
+        padding: 1rem;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        color: var(--text-color-2);
+    }
+    .credit span{
+        color: var(--orange);
+    }
+
+    @media(max-width: 991px){
+        html{
+            font-size: 55%;
+        }
+        .header{
+            padding: 1.5rem 2rem;
+        }
+        section{
+            padding: 2rem;
+        }
+    }
+    @media(max-width: 768px){
+        .header .navbar{
+            right: 2rem;
+        }
+        #search-btn{
+            display: inline-block;
+        }
+        .header .search-form{
+            position: absolute;
+            top: 115%;
+            right: 2rem;
+            background: var(--bg-color-1);
+            border-radius: 0.5rem;
+            width: 90%;
+            box-shadow: var(--box-shadow);
+            transform: scale(0);
+            transform-origin: top right;
+        }
+        .header .search-form.active{
+            transform: scale(1);
+        }
+    }
+    @media (max-width: 768px) {
+    .header .search-form {
+        width: 80%;
+    }
+
+    .header .navbar {
+        width: 90%;
+    }
+
+    .home .content h3 {
+        font-size: 3rem;
+    }
+
+    .home .content p {
+        font-size: 1.5rem;
+    }
+}
+    @media(max-width:450px){
+        html{
+            font-size: 50%;
+        }
+        
+        .contact form .inputBox input{
+            width: 100%;
+        }
+    }
+
+
+    </style>
+</head>
+
+
+
+
+
+<body>
+
+
+    <!--=============Navigation Bar=============-->
+    <header class="header">
+        <!--Logo-->
+        <a href="" class="logo"><i class="fas fa-search"></i>Food Zone</a>
+        <!--Search Bar-->
+        <form action="" class="search-form">
+            <input type="search" id="searchBox" placeholder="Search Here......">
+            <label for="searchBox" class="fas fa-search"></label>
+        </form>
+        <!--Some Icons-->
+        <div class="icons">
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="share-btn" class="fas fa-share"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="menu-btn" class="fas fa-bars"></div>
+        </div>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#packages">Packages</a>
+            
+            <a href="#pricing">Pricing</a>
+            <a href="#review">Review</a>
+            <a href="#contact">Contact</a>
+            <a href="#blogs">Blogs</a>
+            <a href="#footer">Information</a>
+        </nav>
+    </header>
+
+
+
+    <!--============Home section===============-->
+    <section class="home" id="home">
+        <div class="image">
+            <!--back image-->
+            <img src="D:\project\burger.webp" alt="">
+        </div>
+        <!--content-->
+        <div class="content">
+            <h3>Most Tasty foods For you</h3>
+            <p>"Aromatic, Delicious, Flavorful, mouth-watering, Nutritious, Satisfying, Savory, Tasty, Yummy. Appetizing, Delectable, Saccharine." </p>
+            <!--button-->
+            <a href="" class="btn">Explore Now</a>
+        </div>
+
+    </section>
+
+    <!--=============Order Form=============-->
+    <section class="form-container">
+        <form action="">
+
+            <div class="inputBox">
+                <span>Where</span>
+                <input type="text" placeholder="Search Place">
+            </div>
+
+            <div class="inputBox">
+                <span>When</span>
+                <input type="date"/>
+            </div>
+
+            <div class="inputBox">
+                <span>Time</span>
+                <input type="time">
+            </div>
+            <input type="submit" value="Order Now" class="btn">
+        </form>
+    </section>
+
+    <!--==============Our Food===============-->
+    <section class="packages" id="packages">
+        <h1 class="heading">Our <span>Foods</span></h1>
+        <div class="box-container">
+            <div class="box">
+                <div class="image">
+                    <img src="D:\project\blog-1.jpg" alt="">
+                    <h3><i class="fas fa-utensils"></i>Burger></h3>
+                </div>
+                <div class="content">
+                    <div class="price">
+                        180 <span>250</span>
+                    </div>
+                        <p>A Veggie Burger with Cheese,tomato,onion. Serve with cryspy Fries </p>
+                        <a href="" class="btn">Order Now</a>
+                    
+                </div>
+            </div>
+       
+
+        
+         <div class="box">
+            <div class="image">
+                    <img src="D:\project\samosa.avif" alt="">
+                    <h3><i class="fas fa-utensils"></i>Samosa></h3>
+                </div>
+                <div class="content">
+                    <div class="price">
+                        100 <span>180</span>
+                    </div>
+                        <p>A cryspy samosa serve with green and red chutney. For spicy taste serve with green chilly. </p>
+                        <a href="" class="btn">Order Now</a>
+                    </div>
+            </div>
+        
+            
+         
+            <div class="box">
+                <div class="image">
+                    <img src="D:\project\paneer&lakshaparatha.jpeg" alt="">
+                    <h3><i class="fas fa-utensils"></i>Paneer></h3>
+                </div>
+                <div class="content">
+                    <div class="price">
+                        200 <span>250</span>
+                    </div>
+                        <p>Spicy and Dilicious paneer served with Laksha Paratha. Paneer garnish with coriander. </p>
+                        <a href="" class="btn">Order Now</a>
+                    
+                </div>
+            </div>
+        
+
+        
+
+        
+            <div class="box">
+                <div class="image">
+                    <img src="D:\project\chocolate-icecreame.webp" alt="">
+                    <h3><i class="fas fa-utensils"></i>Ice Cream></h3>
+                </div>
+                <div class="content">
+                    <div class="price">
+                        120 <span>180</span>
+                    </div>
+                        <p>One cup of ice Cream flavour of chocolate. Ice Cream served with choco stick. </p>
+                        <a href="" class="btn">Order Now</a>
+                    
+                </div>
+            </div>
+        
+
+     
+
+        
+            <div class="box">
+                <div class="image">
+                    <img src="coffe2.webp" alt="">
+                    <h3><i class="fas fa-utensils"></i>Coffee></h3>
+                </div>
+                <div class="content">
+                    <div class="price">
+                        100 <span>150</span>
+                    </div>
+                        <p>A beverage brewed from the roasted and ground seeds of the tropical evergreen coffee plant.  </p>
+                        <a href="" class="btn">Order Now</a>
+                    
+                </div>
+            </div>
+       
+
+            <div class="box">
+                <div class="image">
+                    <img src="D:\project\lime water.webp" alt="">
+                    <h3><i class="fas fa-utensils"></i>Lime Water></h3>
+                </div>
+                <div class="content">
+                    <div class="price">
+                        180 <span>250</span>
+                    </div>
+                        <p>Water flavored with juice from a fresh-squeezed lime. Lime water served with Ice Cube. </p>
+                        <a href="" class="btn">Order Now</a>
+                    
+                </div>
+            </div>
+       </div>
+
+    </section>
+
+
+    <!--================Pricing Section=============-->
+    <section class="pricing" id="pricing">
+        <h1 class="heading">Our <span>Pricing</span></h1>
+
+        <div class="box-container">
+
+
+            <div class="box">
+                <h3>Basic Plan</h3>
+                <div class="price">
+                    <span>$</span>
+                    <span class="amount">30</span>
+                    <span>/mo</span>
+                </div>
+
+                <ul>
+                    <li>10 Days</li>
+                    <li>Food & Drinks</li>
+                    <li>Safty Guide</li>
+                    <li>Insurance</li>
+                    <li>Free Delivery</li>
+                </ul>
+                <a href="" class="btn">Choose Plan</a>
+            </div>
+
+            <div class="box">
+                <h3>Secondary Plan</h3>
+                <div class="price">
+                    <span>$</span>
+                    <span class="amount">50</span>
+                    <span>/mo</span>
+                </div>
+
+                <ul>
+                    <li>30 Days</li>
+                    <li>Food & Drinks</li>
+                    <li>Safty Guide</li>
+                    <li>Insurance</li>
+                    <li>Free Delivery</li>
+                </ul>
+                <a href="" class="btn">Choose Plan</a>
+            </div>
+
+            <div class="box">
+                <h3>Expensive Plan</h3>
+                <div class="price">
+                    <span>$</span>
+                    <span class="amount">100</span>
+                    <span>/mo</span>
+                </div>
+
+                <ul>
+                    <li>90 Days</li>
+                    <li>Food & Drinks</li>
+                    <li>Safty Guide</li>
+                    <li>Insurance</li>
+                    <li>Free Delivery</li>
+                </ul>
+                <a href="" class="btn">Choose Plan</a>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="review" id="review">
+        <h1 class="heading"><span>Coustmer</span> Review</h1>
+        <div class="box-container">
+            <div class="box" id="scroll">
+                <div class="image">
+                    <img src="D:\project\pic-1.png" alt="">
+                </div>
+                <div class="content">
+                    <p>You make most delicious food. Your Samosa is so cryspy and your services are btter than other. </p>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star" id="star"></span>
+                    <span class="fa fa-star" id="star"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-container">
+            <div class="box" id="scroll">
+                <div class="image">
+                    <img src="D:\project\pic-2.png" alt="">
+                </div>
+                <div class="content">
+                    <p>“The burger was so yummy and I ate the whole thing, even though it was quite heavy for one person.. </p>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star" id="star"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-container">
+            <div class="box" id="scroll">
+                <div class="image">
+                    <img src="D:\project\pic-3.png" alt="">
+                </div>
+                <div class="content">
+                    <p>We had the pizza, and the Ice Cream for dessert. The pizza was the stand out. Overall, would rate. Worth a repeat visit!. </p>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star" id="star"></span>
+                    <span class="fa fa-star" id="star"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-container">
+            <div class="box" id="scroll">
+                <div class="image">
+                    <img src="D:\project\pic-4.png" alt="">
+                </div>
+                <div class="content">
+                    <p>The atmosphere is a little dark and the lighting is to accentuate the food. Everything is orchestrated to not distract from what’s in front of you. </p>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star checked" id="star"></span>
+                    <span class="fa fa-star checked" id="star"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--=========Contact Form ===============-->
+    <section class="contact" id="contact">
+        <h1 class="heading"> <span>Contact</span> Us</h1>
+
+        <form action="">
+            <div class="inputBox">
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+            </div>
+
+            <div class="inputBox">
+                <input type="number" placeholder="Number">
+                <input type="text" placeholder="Subject">
+            </div>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Your Massage"></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+    </section>
+
+    <!--=============Blog Section============-->
+    <section class="blogs" id="blogs">
+        <h1 class="heading">Our <span>blogs</span></h1>
+        <div class="box-container">
+
+
+            <div class="box">
+                <div class="image">
+                    <img src="img1.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>What is bombay and hyderabadi biryani?</h3>
+                    <a href="" class="btn">Read More</a>
+                    <div class="icons">
+                        <a href=""><i class="fas fa-calendar"></i> 1st jan, 2025 </a>
+                        <a href=""><i class="fas fa-user"></i> by admin</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="img2.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>What is Cheese Veggie Burger?</h3>
+                    <a href="" class="btn">Read More</a>
+                    <div class="icons">
+                        <a href=""><i class="fas fa-calendar"></i> 1st jan, 2025 </a>
+                        <a href=""><i class="fas fa-user"></i> by admin</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="img3.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>What is Mashroom Pizza which is better than other pizza?</h3>
+                    <a href="" class="btn">Read More</a>
+                    <div class="icons">
+                        <a href=""><i class="fas fa-calendar"></i> 1st jan, 2025 </a>
+                        <a href=""><i class="fas fa-user"></i> by admin</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!--================Footer Section====================-->
+    <section class="footer" id="footer">
+        <div class="box-container">
+
+
+            <div class="box">
+                <h3>Our Branches</h3>
+                <a href=""><i class="fas fa-map-marker-alt"></i>India</a>
+                <a href=""><i class="fas fa-map-marker-alt"></i>Russia</a>
+                <a href=""><i class="fas fa-map-marker-alt"></i>Japan</a>
+                <a href=""><i class="fas fa-map-marker-alt"></i>France</a>
+                <a href=""><i class="fas fa-map-marker-alt"></i>Canada</a>
+            </div>
+
+            <div class="box">
+                <h3>Quick Links</h3>
+                <a href=""><i class="fas fa-chevron-right"></i>Home</a>
+                <a href=""><i class="fas fa-chevron-right"></i>Packages</a>
+                <a href=""><i class="fas fa-chevron-right"></i>Services</a>
+                <a href=""><i class="fas fa-chevron-right"></i>Prices</a>
+                <a href=""><i class="fas fa-chevron-right"></i>Blogs</a>
+            </div>
+
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a href=""><i class="fas fa-phone"></i> +91 7275533175</a>
+                <a href=""><i class="fas fa-phone"></i>+123-456-789</a>
+                <a href=""><i class="fas fa-envelope"></i>tripathi78@gmail.com</a>
+                <a href=""><i class="fas fa-map-marker-alt"></i>Lucknow, Uttar Pradesh, 220116</a>
+            </div>
+
+            <div class="box">
+                <h3>Follow Us</h3>
+                <a href=""><i class="fab fa-facebook"></i>Facebook</a>
+                <a href=""><i class="fab fa-twitter"></i>Twitter</a>
+                <a href=""><i class="fab fa-instagram"></i>Instagram</a>
+                <a href=""><i class="fab fa-linkedin"></i>Linkedin</a>
+                <a href=""><i class="fab fa-pinterest"></i>Pinterest</a>
+            </div>
+
+
+        </div>
+
+        <!--Copyright-->
+        <div class="credit">Create By <span>Shaurya Tripathi</span> | All Right Reserved</div>
+    </section>
+    
+    <script>
+        // Smooth Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Toggle Navbar
+let navbar = document.querySelector('.navbar');
+document.querySelector('#menu-btn').onclick = () => {
+    navbar.classList.toggle('active');
+}
+
+// Toggle Search Form
+let searchForm = document.querySelector('.search-form');
+document.querySelector('#search-btn').onclick = () => {
+    searchForm.classList.toggle('active');
+}
+
+
+
+    </script>
+
+</body>
+</html>
